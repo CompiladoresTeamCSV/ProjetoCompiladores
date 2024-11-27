@@ -1,0 +1,3 @@
+carregue "dados.csv"
+filtre $idade$ > 18
+salve "resultado.csv"
