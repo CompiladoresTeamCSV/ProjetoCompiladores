@@ -3,6 +3,9 @@ import pandas as pd
 from antlr4 import *
 from Gramatica_dadosLexer import Gramatica_dadosLexer
 from Gramatica_dadosParser import Gramatica_dadosParser
+from utils import *
+
+tabelinhas = {}
 
 def mostrar(no, indentacao):
     if no.getChildCount() == 0:
@@ -14,13 +17,28 @@ def mostrar(no, indentacao):
 
 def carregar_documento(file):
     tabelinha = pd.read_csv(file, sep=';', header=None)
-    return tabelinha
+    tabelinhas[f'{get_num_tabelinhas()}'] = tabelinha
 
-def avalie_pedido(pedido):
-    if pedido.comando():  # Processa o comando principal
+def verificar_programa(programa):
+    return programa.split(';')
+
+def avalie_pedido(pedido, num):
+    
+    if num == 0:
+        if pedido.comando().action().getText() != "carregue":
+            raise Exception("O primeiro pedido dever ser carregar um csv") 
+        else:
+        
+            carregar_documento(pedido.parametros().getText().replace('"',''))
+            return
+    if pedido.comando() and num!=0:  # Processa o comando principal
+        print(tabelinhas)
         comando = pedido.comando().action().getText()
+
         parametros = []
         condicao = None
+        carrega = False
+        tabelinha = tabelinhas['0']
 
         # Verifica os parâmetros
         if pedido.parametros():
@@ -30,8 +48,10 @@ def avalie_pedido(pedido):
         if pedido.condicao():
             condicao = avalie_condicao(pedido.condicao())
 
+
         # Executa o comando correspondente
-        return execute_comando(comando, parametros, condicao)
+        print(num)
+        return execute_comando(condicao,comando, parametros,tabelinha)   
 
     else:
         raise Exception(f"Pedido inválido: {pedido.toStringTree()}")
@@ -76,30 +96,57 @@ def avalie_condicao(condicao):
     else:
         raise Exception(f"Condição inválida: {condicao.toStringTree()}")
 
-def execute_comando(comando, parametros, condicao):
-    # Implemente o comportamento de cada comando específico
+
+def execute_comando(condicao,comando, parametros, tabelinha = None):
+    print(parametros)
+
+    
+
+    for param in parametros:
+        if "$" in param:
+            coluna = param.replace('$', '')
+            break
+
+
     if comando == "filtre":
-        print(f"Filtrando com os parâmetros: {parametros} e condição: {condicao}")
+        print((tabelinha[coluna] > 25).sum())
+    
     elif comando == "carregue":
-        print(f"Carregando arquivo: {parametros[0]}")
+        if tabelinha_exists():
+            print("Tabela já existe")
+        else:
+            carregar_documento(parametros[0],parametros[1])
+
     elif comando == "salve":
-        print(f"Salvando em: {parametros[0]}")
+
+        pd.to_csv('dados/{parametro.csv}',tabelinha)
+
     elif comando == "some":
-        print(f"Somando com parâmetros: {parametros}")
+        soma = tabelinha[parametros].sum()
+        print(soma)
+    
     elif comando == "media":
-        print(f"Calculando média com parâmetros: {parametros}")
-    elif comando == "conta":
-        print(f"Contando elementos com parâmetros: {parametros}")
+        media = tabelinha[parametros].mean()
+        print(media)
+    
+    elif comando == "conte":
+        count = tabelinha[parametros].value_counts()
+        print(count)
+
     elif comando == "min":
-        print(f"Calculando mínimo com parâmetros: {parametros}")
+        min = tabelinha[parametros].min()
+        print(min)
+
     elif comando == "max":
-        print(f"Calculando máximo com parâmetros: {parametros}")
+        max = tabelinha[parametros].max()   
+        print(max)
+
     elif comando == "ordene":
-        print(f"Ordenando com parâmetros: {parametros}")
+        tabelinha = tabelinha.sort_values(by = parametros)
+
     elif comando == "exporte":
-        print(f"Exportando para: {parametros[0]}")
-    elif comando == "mescla":
-        print(f"Mesclando arquivos: {parametros}")
+       pd.to_csv(parametros,tabelinha)
+
     else:
         raise Exception(f"Comando desconhecido: {comando}")
 
@@ -111,9 +158,9 @@ def main():
     # Input direto no código
     input_stream = InputStream(
         """
-        carregue "dados.csv"
-        filtre $idade$ > 18
-        salve "resultado.csv"
+        carregue "dados.csv";      
+        filtre $idade$ > 18;
+        salve "resultado.csv";
         """
     )
 
@@ -124,8 +171,10 @@ def main():
     tree = parser.prog()  # Ponto de entrada
 
     # Percorre cada pedido no programa
-    for pedido in tree.pedido():
-        avalie_pedido(pedido)
+    
+    for line, pedido in enumerate(tree.pedido()):
+        
+        avalie_pedido(pedido,line)
 
 
 if __name__ == "__main__":

@@ -8,12 +8,13 @@ LOAD: 'carregue';
 SAVE: 'salve';
 SUM: 'some';
 AVG: 'media';
-COUNT: 'conta';
+COUNT: 'conte';
 MIN: 'min';
 MAX: 'max';
 SORT: 'ordene';
 EXPORT: 'exporte';
-MERGE: 'mescla';
+END_OF_LINE: ';';
+
 
 // TOKENS
 STRING: '"' (~["\r\n])* '"'; // Texto entre aspas, sem novas linhas
@@ -28,13 +29,13 @@ BRANCO: (' ' | '\n' | '\t') -> skip; // Ignorar espaços e quebras de linha
 
 prog: pedido+ EOF; // Ponto de entrada
 
-pedido: comando (parametros)? (condicao)?;
+pedido: comando (parametros)? (condicao)? END_OF_LINE;
 
 comando: action;
 
-parametros: (ID | STRING | FILE | NUMBER)+;
+parametros: (ID | FILE) | (STRING | NUMBER)+;
 
 condicao: ID OPERATOR (STRING | NUMBER)
           (LOGICAL_OPERATOR condicao)?; // Condições compostas
 
-action: FILTER | LOAD | SAVE | SUM | AVG | COUNT | MIN | MAX | SORT | EXPORT | MERGE;
+action: FILTER | LOAD | SAVE | SUM | AVG | COUNT | MIN | MAX | SORT | EXPORT;
