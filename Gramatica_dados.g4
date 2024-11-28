@@ -15,11 +15,10 @@ SORT: 'ordene';
 EXPORT: 'exporte';
 END_OF_LINE: ';';
 
-
 // TOKENS
 STRING: '"' (~["\r\n])* '"'; // Texto entre aspas, sem novas linhas
 FILE: '"' (~["\r\n])* '\\.' [a-zA-Z]+ '"'; // Arquivos como "dados.csv"
-ID: '$' [A-Za-z_][A-Za-z0-9_]* '$'; // Identificadores delimitados por '$'
+ID: '$' [A-Za-z0-9_]+ '$';
 NUMBER: [0-9]+ ('.' [0-9]+)?; // Números inteiros ou decimais
 OPERATOR: '<' | '>' | '=' | '>=' | '<=' | '==' | '!='; // Operadores relacionais
 LOGICAL_OPERATOR: '&&' | '||'; // Operadores lógicos
@@ -35,7 +34,10 @@ comando: action;
 
 parametros: (ID | FILE) | (STRING | NUMBER)+;
 
-condicao: ID OPERATOR (STRING | NUMBER)
-          (LOGICAL_OPERATOR condicao)?; // Condições compostas
+condicao: expressao_logica;
+
+expressao_logica: operando OPERATOR operando;
+
+operando: ID | NUMBER | STRING; // Operando simples: pode ser ID, NUMBER ou STRING
 
 action: FILTER | LOAD | SAVE | SUM | AVG | COUNT | MIN | MAX | SORT | EXPORT;
