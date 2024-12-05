@@ -97,7 +97,7 @@ def avalie_pedido(pedido, num):
 def main():
     input_stream = """
         carregue "dados.csv";
-        filtre "idade" > 45;
+        filtre "idade" > 50;
         salve "resultado.csv";
     """
 

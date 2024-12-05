@@ -10,21 +10,22 @@ else:
 
 def serializedATN():
     return [
-        4,1,18,48,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,
-        0,14,8,0,11,0,12,0,15,1,0,1,0,1,1,1,1,3,1,22,8,1,1,1,3,1,25,8,1,
-        1,1,1,1,1,2,1,2,1,3,1,3,4,3,33,8,3,11,3,12,3,34,3,3,37,8,3,1,4,1,
-        4,1,4,1,4,1,4,3,4,44,8,4,1,5,1,5,1,5,0,0,6,0,2,4,6,8,10,0,3,1,0,
-        13,14,2,0,12,12,15,15,1,0,1,10,47,0,13,1,0,0,0,2,19,1,0,0,0,4,28,
-        1,0,0,0,6,36,1,0,0,0,8,38,1,0,0,0,10,45,1,0,0,0,12,14,3,2,1,0,13,
-        12,1,0,0,0,14,15,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,17,1,0,0,
-        0,17,18,5,0,0,1,18,1,1,0,0,0,19,21,3,4,2,0,20,22,3,6,3,0,21,20,1,
-        0,0,0,21,22,1,0,0,0,22,24,1,0,0,0,23,25,3,8,4,0,24,23,1,0,0,0,24,
-        25,1,0,0,0,25,26,1,0,0,0,26,27,5,11,0,0,27,3,1,0,0,0,28,29,3,10,
-        5,0,29,5,1,0,0,0,30,37,7,0,0,0,31,33,7,1,0,0,32,31,1,0,0,0,33,34,
-        1,0,0,0,34,32,1,0,0,0,34,35,1,0,0,0,35,37,1,0,0,0,36,30,1,0,0,0,
-        36,32,1,0,0,0,37,7,1,0,0,0,38,39,5,14,0,0,39,40,5,16,0,0,40,43,7,
-        1,0,0,41,42,5,17,0,0,42,44,3,8,4,0,43,41,1,0,0,0,43,44,1,0,0,0,44,
-        9,1,0,0,0,45,46,7,2,0,0,46,11,1,0,0,0,6,15,21,24,34,36,43
+        4,1,18,53,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,1,0,4,0,18,8,0,11,0,12,0,19,1,0,1,0,1,1,1,1,3,1,26,8,1,
+        1,1,3,1,29,8,1,1,1,1,1,1,2,1,2,1,3,1,3,4,3,37,8,3,11,3,12,3,38,3,
+        3,41,8,3,1,4,1,4,1,5,1,5,1,5,1,5,1,6,1,6,1,7,1,7,1,7,0,0,8,0,2,4,
+        6,8,10,12,14,0,4,1,0,13,14,2,0,12,12,15,15,2,0,12,12,14,15,1,0,1,
+        10,49,0,17,1,0,0,0,2,23,1,0,0,0,4,32,1,0,0,0,6,40,1,0,0,0,8,42,1,
+        0,0,0,10,44,1,0,0,0,12,48,1,0,0,0,14,50,1,0,0,0,16,18,3,2,1,0,17,
+        16,1,0,0,0,18,19,1,0,0,0,19,17,1,0,0,0,19,20,1,0,0,0,20,21,1,0,0,
+        0,21,22,5,0,0,1,22,1,1,0,0,0,23,25,3,4,2,0,24,26,3,6,3,0,25,24,1,
+        0,0,0,25,26,1,0,0,0,26,28,1,0,0,0,27,29,3,8,4,0,28,27,1,0,0,0,28,
+        29,1,0,0,0,29,30,1,0,0,0,30,31,5,11,0,0,31,3,1,0,0,0,32,33,3,14,
+        7,0,33,5,1,0,0,0,34,41,7,0,0,0,35,37,7,1,0,0,36,35,1,0,0,0,37,38,
+        1,0,0,0,38,36,1,0,0,0,38,39,1,0,0,0,39,41,1,0,0,0,40,34,1,0,0,0,
+        40,36,1,0,0,0,41,7,1,0,0,0,42,43,3,10,5,0,43,9,1,0,0,0,44,45,3,12,
+        6,0,45,46,5,16,0,0,46,47,3,12,6,0,47,11,1,0,0,0,48,49,7,2,0,0,49,
+        13,1,0,0,0,50,51,7,3,0,0,51,15,1,0,0,0,5,19,25,28,38,40
     ]
 
 class Gramatica_dadosParser ( Parser ):
@@ -51,10 +52,12 @@ class Gramatica_dadosParser ( Parser ):
     RULE_comando = 2
     RULE_parametros = 3
     RULE_condicao = 4
-    RULE_action = 5
+    RULE_expressao_logica = 5
+    RULE_operando = 6
+    RULE_action = 7
 
     ruleNames =  [ "prog", "pedido", "comando", "parametros", "condicao", 
-                   "action" ]
+                   "expressao_logica", "operando", "action" ]
 
     EOF = Token.EOF
     FILTER=1
@@ -123,19 +126,19 @@ class Gramatica_dadosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 13 
+            self.state = 17 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
-                self.state = 12
+                self.state = 16
                 self.pedido()
-                self.state = 15 
+                self.state = 19 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & 2046) != 0)):
                     break
 
-            self.state = 17
+            self.state = 21
             self.match(Gramatica_dadosParser.EOF)
         except RecognitionException as re:
             localctx.exception = re
@@ -189,25 +192,25 @@ class Gramatica_dadosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 19
+            self.state = 23
             self.comando()
-            self.state = 21
+            self.state = 25
             self._errHandler.sync(self)
             la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
-                self.state = 20
+                self.state = 24
                 self.parametros()
 
 
-            self.state = 24
+            self.state = 28
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==14:
-                self.state = 23
+            if (((_la) & ~0x3f) == 0 and ((1 << _la) & 53248) != 0):
+                self.state = 27
                 self.condicao()
 
 
-            self.state = 26
+            self.state = 30
             self.match(Gramatica_dadosParser.END_OF_LINE)
         except RecognitionException as re:
             localctx.exception = re
@@ -249,7 +252,7 @@ class Gramatica_dadosParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_comando)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 28
+            self.state = 32
             self.action()
         except RecognitionException as re:
             localctx.exception = re
@@ -305,12 +308,12 @@ class Gramatica_dadosParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_parametros)
         self._la = 0 # Token type
         try:
-            self.state = 36
+            self.state = 40
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [13, 14]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 30
+                self.state = 34
                 _la = self._input.LA(1)
                 if not(_la==13 or _la==14):
                     self._errHandler.recoverInline(self)
@@ -320,22 +323,24 @@ class Gramatica_dadosParser ( Parser ):
                 pass
             elif token in [12, 15]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 32 
+                self.state = 36 
                 self._errHandler.sync(self)
-                _la = self._input.LA(1)
-                while True:
-                    self.state = 31
-                    _la = self._input.LA(1)
-                    if not(_la==12 or _la==15):
-                        self._errHandler.recoverInline(self)
+                _alt = 1
+                while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+                    if _alt == 1:
+                        self.state = 35
+                        _la = self._input.LA(1)
+                        if not(_la==12 or _la==15):
+                            self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+
                     else:
-                        self._errHandler.reportMatch(self)
-                        self.consume()
-                    self.state = 34 
+                        raise NoViableAltException(self)
+                    self.state = 38 
                     self._errHandler.sync(self)
-                    _la = self._input.LA(1)
-                    if not (_la==12 or _la==15):
-                        break
+                    _alt = self._interp.adaptivePredict(self._input,3,self._ctx)
 
                 pass
             else:
@@ -357,23 +362,8 @@ class Gramatica_dadosParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self):
-            return self.getToken(Gramatica_dadosParser.ID, 0)
-
-        def OPERATOR(self):
-            return self.getToken(Gramatica_dadosParser.OPERATOR, 0)
-
-        def STRING(self):
-            return self.getToken(Gramatica_dadosParser.STRING, 0)
-
-        def NUMBER(self):
-            return self.getToken(Gramatica_dadosParser.NUMBER, 0)
-
-        def LOGICAL_OPERATOR(self):
-            return self.getToken(Gramatica_dadosParser.LOGICAL_OPERATOR, 0)
-
-        def condicao(self):
-            return self.getTypedRuleContext(Gramatica_dadosParser.CondicaoContext,0)
+        def expressao_logica(self):
+            return self.getTypedRuleContext(Gramatica_dadosParser.Expressao_logicaContext,0)
 
 
         def getRuleIndex(self):
@@ -394,30 +384,115 @@ class Gramatica_dadosParser ( Parser ):
 
         localctx = Gramatica_dadosParser.CondicaoContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_condicao)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 42
+            self.expressao_logica()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class Expressao_logicaContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def operando(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(Gramatica_dadosParser.OperandoContext)
+            else:
+                return self.getTypedRuleContext(Gramatica_dadosParser.OperandoContext,i)
+
+
+        def OPERATOR(self):
+            return self.getToken(Gramatica_dadosParser.OPERATOR, 0)
+
+        def getRuleIndex(self):
+            return Gramatica_dadosParser.RULE_expressao_logica
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExpressao_logica" ):
+                listener.enterExpressao_logica(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExpressao_logica" ):
+                listener.exitExpressao_logica(self)
+
+
+
+
+    def expressao_logica(self):
+
+        localctx = Gramatica_dadosParser.Expressao_logicaContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 10, self.RULE_expressao_logica)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 44
+            self.operando()
+            self.state = 45
+            self.match(Gramatica_dadosParser.OPERATOR)
+            self.state = 46
+            self.operando()
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class OperandoContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def ID(self):
+            return self.getToken(Gramatica_dadosParser.ID, 0)
+
+        def NUMBER(self):
+            return self.getToken(Gramatica_dadosParser.NUMBER, 0)
+
+        def STRING(self):
+            return self.getToken(Gramatica_dadosParser.STRING, 0)
+
+        def getRuleIndex(self):
+            return Gramatica_dadosParser.RULE_operando
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterOperando" ):
+                listener.enterOperando(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitOperando" ):
+                listener.exitOperando(self)
+
+
+
+
+    def operando(self):
+
+        localctx = Gramatica_dadosParser.OperandoContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 12, self.RULE_operando)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 38
-            self.match(Gramatica_dadosParser.ID)
-            self.state = 39
-            self.match(Gramatica_dadosParser.OPERATOR)
-            self.state = 40
+            self.state = 48
             _la = self._input.LA(1)
-            if not(_la==12 or _la==15):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 53248) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 43
-            self._errHandler.sync(self)
-            _la = self._input.LA(1)
-            if _la==17:
-                self.state = 41
-                self.match(Gramatica_dadosParser.LOGICAL_OPERATOR)
-                self.state = 42
-                self.condicao()
-
-
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -481,11 +556,11 @@ class Gramatica_dadosParser ( Parser ):
     def action(self):
 
         localctx = Gramatica_dadosParser.ActionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_action)
+        self.enterRule(localctx, 14, self.RULE_action)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 45
+            self.state = 50
             _la = self._input.LA(1)
             if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2046) != 0)):
                 self._errHandler.recoverInline(self)

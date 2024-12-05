@@ -96,4 +96,7 @@ O resultado é salvo no arquivo resultado_feminino.csv.
 Conclusão
 Este projeto fornece uma implementação simples de uma linguagem de processamento de dados, permitindo carregar, filtrar e salvar arquivos CSV com uma sintaxe intuitiva. Ele é baseado no uso de ANTLR para o parsing e execução de comandos definidos pelo usuário.
 
-
+Instruções de Como Rodar:
+abrir o terminal na pasta do projeto e rodar o comando "java -jar antlr.jar -Dlanguage=Python3 Gramatica_dados.g4" para gerar o código do lexer e do parser com a gramática definida. Isso irá gerar os arquivos Gramatica_dadosLexer.py e Gramatica_dadosParser.py.(nesse caso ele já estão criados)
+posteriormente, rodar o arquivo main.py para executar o programa.
+OBS: O código a ser interpretado deve estar no input_stream.(presente no main.py)

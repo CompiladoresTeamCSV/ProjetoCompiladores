@@ -53,6 +53,24 @@ class Gramatica_dadosListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by Gramatica_dadosParser#expressao_logica.
+    def enterExpressao_logica(self, ctx:Gramatica_dadosParser.Expressao_logicaContext):
+        pass
+
+    # Exit a parse tree produced by Gramatica_dadosParser#expressao_logica.
+    def exitExpressao_logica(self, ctx:Gramatica_dadosParser.Expressao_logicaContext):
+        pass
+
+
+    # Enter a parse tree produced by Gramatica_dadosParser#operando.
+    def enterOperando(self, ctx:Gramatica_dadosParser.OperandoContext):
+        pass
+
+    # Exit a parse tree produced by Gramatica_dadosParser#operando.
+    def exitOperando(self, ctx:Gramatica_dadosParser.OperandoContext):
+        pass
+
+
     # Enter a parse tree produced by Gramatica_dadosParser#action.
     def enterAction(self, ctx:Gramatica_dadosParser.ActionContext):
         pass
